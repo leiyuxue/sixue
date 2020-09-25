@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Logger;
 use Yansongda\Pay\Pay;
+use Illuminate\Http\Resources\Json\JsonResource as Resource;
 use Elasticsearch\ClientBuilder as ESClientBuilder;
 
 class AppServiceProvider extends ServiceProvider
@@ -61,5 +62,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \view()->composer(['layouts._header','products.*'],'App\Http\ViewComposers\HeaderViewComposer');
+        Resource::withoutWrapping();
     }
 }
