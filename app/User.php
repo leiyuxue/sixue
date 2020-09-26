@@ -57,4 +57,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+//    api注册加密密码
+    public function setPasswordAttribute($value)
+    {
+        if(strlen($value)!=60){
+            $value=bcrypt($value);
+        }
+        $this->attributes['password']=$value;
+    }
 }
