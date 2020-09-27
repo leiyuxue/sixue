@@ -23,6 +23,10 @@ Route::prefix('v1')->namespace('Api')->name('api.v1.')->group(function () {
             ->name('verificationCodes.store');
 //    用户注册
         Route::post('users','UsersController@store')->name('users.store');
+//        微信登录
+        Route::post('socials/{social_type}/authorizations','AuthorizationsController@socialStore')
+            ->where('social_type','wechat')
+            ->name('socials.authorizations.socialStore');
     });
     Route::middleware('throttle'.config('api.rate_limits.access'))->group(function(){
 
