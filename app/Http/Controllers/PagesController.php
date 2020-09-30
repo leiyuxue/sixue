@@ -17,7 +17,6 @@ class PagesController extends Controller
 {
     public function root()
     {
-
         $data=Category::query()->whereNull('parent_id')->where('is_directory',1)->where('is_show',1)->get();
         foreach($data as $d){
             $ids=Category::query()->where('path','like','%-'.$d->id.'-%')->where('is_directory',0)->pluck('id');
