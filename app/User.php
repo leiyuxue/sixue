@@ -27,7 +27,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'weixin_openid', 'weixin_unionid'
     ];
 
     /**
@@ -58,6 +58,12 @@ class User extends Authenticatable implements JWTSubject
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+//    关联图片
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 
 //    api注册加密密码
